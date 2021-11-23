@@ -1,4 +1,5 @@
 import React, { Fragment, useState  } from 'react';
+import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { Link } from 'react-router-dom';
@@ -32,13 +33,12 @@ import BdayDisplay from '../FormBirthdayInput/BdayDisplay';
 
 import DatePicker from 'react-date-picker';
 
-import ViewOnGithubButton from '../ViewOnGithubButton/ViewOnGithubButton';
-import GithubLoginButton from '../GithubLoginButton/GithubLoginButton';
-
 const SignUpCard = ({ signUpStart, error, fetching }) => {
   let monthInput = '1';
   let dayInput = '1';
   let yearInput = '2000';
+
+  const { t, i18n } = useTranslation();
 
   const selectedMonth = (event) => {    
     monthInput = event.target.value;
@@ -118,35 +118,35 @@ const SignUpCard = ({ signUpStart, error, fetching }) => {
           style={{ fontSize: '1.3rem' }}
           className="heading-2 color-grey text-center"
         >
-          Regístrate en kief.mx y se parte de este gran universo cannábico 
+          {t('SignUpCard.Title')}          
         </h2>        
         <form className="form-card__form" onSubmit={formik.handleSubmit}>
           <FormInput
             name="email"
             fieldProps={formik.getFieldProps('email')}
             valid={formik.touched.email && !formik.errors.email}
-            placeholder="Email"
+            placeholder={t('SignUpCard.Email')}
           />
           
           <FormInput
             name="fullName"
             fieldProps={formik.getFieldProps('fullName')}
             valid={formik.touched.fullName && !formik.errors.fullName}
-            placeholder="Nombre"
+            placeholder={t('SignUpCard.FullName')}
           />
           
           <FormInput
             name="username"
             fieldProps={formik.getFieldProps('username')}
             valid={formik.touched.username && !formik.errors.username}
-            placeholder="Usuario"
+            placeholder={t('SignUpCard.Username')}
           />
           <p className="error"  >{(formik.touched.username == true && formik.errors.username) ?  formik.errors.username : '' } </p>    
           
           <FormInput
             name="password"
             fieldProps={formik.getFieldProps('password')}
-            placeholder="Password"
+            placeholder={t('SignUpCard.Password')}
             valid={formik.touched.password && !formik.errors.password}
             type="password"
           />
@@ -155,7 +155,7 @@ const SignUpCard = ({ signUpStart, error, fetching }) => {
           <FormInput
             name="city"
             fieldProps={formik.getFieldProps('city')}
-            placeholder="Ciudad"
+            placeholder={t('SignUpCard.City')}
             valid={formik.touched.city && !formik.errors.city}
             type="text"
           />          
@@ -164,7 +164,7 @@ const SignUpCard = ({ signUpStart, error, fetching }) => {
               style={{ fontSize: '1.3rem' }}
               className="heading-2 color-grey text-left"
             >
-              Fecha Nacimiento
+              {t('SignUpCard.DOB')}
             </h2> 
           <div className="__DOB">
               
@@ -173,7 +173,7 @@ const SignUpCard = ({ signUpStart, error, fetching }) => {
               fieldProps={formik.getFieldProps('dayOBD')}
               valid={formik.touched.dayOBD && !formik.errors.dayOBD}
               type="number"
-              placeholder="Día"
+              placeholder={t('SignUpCard.Day')}
               min="1"
               max="31"
             />
@@ -182,7 +182,7 @@ const SignUpCard = ({ signUpStart, error, fetching }) => {
               fieldProps={formik.getFieldProps('monthOBD')}
               valid={formik.touched.monthOBD && !formik.errors.monthOBD}
               type="number"
-              placeholder="Mes"
+              placeholder={t('SignUpCard.Month')}
               min="1"
               max="12"
             />
@@ -191,7 +191,7 @@ const SignUpCard = ({ signUpStart, error, fetching }) => {
               fieldProps={formik.getFieldProps('yearOBD')}
               valid={formik.touched.yearOBD && !formik.errors.yearOBD}
               type="number"
-              placeholder="Año"
+              placeholder={t('SignUpCard.Year')}
               min="1900"
               max="2021"
             />
@@ -203,7 +203,7 @@ const SignUpCard = ({ signUpStart, error, fetching }) => {
               Object.keys(formik.touched).length === 0 ? true : !formik.isValid
             }
           >
-            Unirme
+            {t('SignUpCard.SignUp')}
           </Button>
           <p></p>
         </form>
@@ -226,11 +226,11 @@ const SignUpCard = ({ signUpStart, error, fetching }) => {
           }}
         >
           <h4 style={{ marginRight: '5px' }} className="heading-4 font-thin">
-            Tengo cuenta
+          {t('SignUpCard.HaveAccount')}
           </h4>
           <Link to="/login">
             <TextButton medium blue bold>
-              Ingresar
+            {t('SignUpCard.SignIn')}              
             </TextButton>
           </Link>
         </section>

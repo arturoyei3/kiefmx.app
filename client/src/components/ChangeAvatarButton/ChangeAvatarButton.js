@@ -1,4 +1,5 @@
 import React, { Fragment, useRef, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
@@ -26,6 +27,7 @@ const ChangeAvatarButton = ({
   error,
 }) => {
   const inputRef = useRef();
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     if (error) {
@@ -40,7 +42,7 @@ const ChangeAvatarButton = ({
         {
           options: [
             {
-              text: 'Upload Photo',
+              text: t('Profile.UploadPhoto'),
               className: 'color-blue font-bold',
               onClick: () => {
                 inputRef.current.click();
@@ -48,7 +50,7 @@ const ChangeAvatarButton = ({
             },
             {
               warning: true,
-              text: 'Remove Current Photo',
+              text: t('Profile.RemoveCurrentPhoto'),
               onClick: () => {
                 changeAvatar(null, true);
               },
@@ -65,7 +67,7 @@ const ChangeAvatarButton = ({
     remove
       ? await removeAvatarStart(token)
       : await changeAvatarStart(event.target.files[0], token);
-    if (!error) showAlert('Profile picture updated.');
+    if (!error) showAlert(t('Profile.ProfilePictureUpdated'));
   };
 
   return (
@@ -75,7 +77,7 @@ const ChangeAvatarButton = ({
         style={{ cursor: 'pointer', position: 'relative' }}
         onClick={(event) => handleClick(event)}
       >
-        <Fragment>{children ? children : 'Change Profile Photo'}</Fragment>
+        <Fragment>{children ? children : t('Profile.ChangeProfilePhoto')}</Fragment>
       </label>
       <input
         id="avatar-upload"

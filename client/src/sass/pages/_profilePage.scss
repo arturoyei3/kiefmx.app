@@ -215,3 +215,10 @@
   line-height: 3.5rem;
   padding: 0 2rem;
 }
+
+.MuiSwitch-colorSecondary.Mui-checked {
+  color: $color-kiefmx !important;
+}
+.MuiSwitch-colorSecondary.Mui-checked + .MuiSwitch-track {
+  background-color: $color-kiefmx !important;
+}

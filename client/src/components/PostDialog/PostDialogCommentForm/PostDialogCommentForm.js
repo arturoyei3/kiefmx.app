@@ -5,6 +5,8 @@ import React, {
   useRef,
   useState,
 } from 'react';
+import { useTranslation } from 'react-i18next';
+
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
@@ -37,6 +39,7 @@ const PostDialogCommentForm = ({
     INITIAL_STATE
   );
   const [mention, setMention] = useState(null);
+  const { t, i18n } = useTranslation();
 
   let {
     handleSearchDebouncedRef,
@@ -60,7 +63,7 @@ const PostDialogCommentForm = ({
     if (state.comment.length === 0) {
       return dispatch({
         type: 'POST_COMMENT_FAILURE',
-        payload: 'You cannot post an empty comment.',
+        payload: t('PostDialog.CommentForm.YouCannotPostAnEmptyComment'),
       });
     }
 
@@ -117,7 +120,7 @@ const PostDialogCommentForm = ({
             <input
               className="add-comment__input"
               type="text"
-              placeholder="Add a comment..."
+              placeholder={t("PostDialog.CommentForm.AddAComment")}
               onChange={(event) => {
                 // Removed the `@username` from the input so the user is no longer looking to reply
                 if (replying && !event.target.value) {
@@ -149,7 +152,7 @@ const PostDialogCommentForm = ({
               type="submit"
               className="heading-3 heading--button font-bold color-blue"
             >
-              Post
+              {t("PostDialog.CommentForm.Post")}
             </button>
           </Fragment>
         ) : (
@@ -157,10 +160,10 @@ const PostDialogCommentForm = ({
             <h4 className="heading-4 font-medium color-grey">
               <span>
                 <Link to="/login" className="link">
-                  Log in
+                {t('PostDialog.CommentForm.Login')}
                 </Link>{' '}
               </span>
-              to like or comment.
+                {t('PostDialog.CommentForm.LoginToLikeOrComment')}
             </h4>
           </Fragment>
         )}

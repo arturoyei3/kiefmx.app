@@ -1,6 +1,64 @@
 {
   "HashtagPosts": {
-    "CouldNotFindAnyPostAssociatedWith": "Could not find any post associated with #",    
-    "": ""
+    "CouldNotFindAnyPostAssociatedWith": "Could not find any post associated with #"       
+  },
+  "LoginCard":{
+    "DontHaveAnAccount":"Don't have an account?",
+    "ForgotPassword":"Forgot password?",
+    "Login":"Login",
+    "UsernameOrEmailAddress":"Username or email address",
+    "Password":"Password",
+    "SignUp":"Sign up"
+  },
+  "SignUpCard":{
+    "HaveAccount":"Have an account",
+    "City":"City",
+    "Day":" Day",
+    "Month":"Month",
+    "Year":"Year",
+    "DOB":"Birthdate",
+    "Email":"Email",
+    "FullName":"Name",
+    "Website":"Website",
+    "Bio":"Bio",    
+    "Password":"Password",
+    "SignUp":"Sign up",
+    "SignIn":"Sign in",
+    "Title":"Sign up at kief.mx and be part of this great cannabis universe.",
+    "Username":"Username"
+  },
+  "CannabicProfile":{
+    "Title":"Cannabic Profile",
+    "SubTitle":"Select the option that most identifies you:",
+    "Use":"Cannabis use",
+    "UseSubTitle":"Do you use Cannabis?"
+  },
+  "Profile":{
+    "ChangePassword":"Change Password",
+    "ChangeProfilePhoto":"Change Profile Photo",
+    "EditProfile":"Edit Profile",
+    "Following":"Following",
+    "Follow":"Follow",
+    "Unfollow":"Unfollow",
+    "UploadPhoto":"Subir foto",
+    "RemoveCurrentPhoto":"Remove Current Photo",
+    "ProfilePictureUpdated":"Profile Picture Updated",
+    "Submit":"Guardar"
+  },
+  "PostDialog":{
+    "CommentForm":{
+      "AddAComment":"Add a comment...",
+      "Login":"Log in",
+      "LoginToLikeOrComment":"to like or comment.",
+      "Post":"Post",
+      "YouCannotPostAnEmptyComment":"You cannot post an empty comment."
+    }, 
+    "Stats":{
+      "BeTheFirstTo":"Be the first to",
+      "CouldNotVoteOnThePost":"Could not vote on the post.",
+      "LikeThis": "like this",
+      "Like":"like",
+      "Likes":"likes"
+    }    
   }   
 }

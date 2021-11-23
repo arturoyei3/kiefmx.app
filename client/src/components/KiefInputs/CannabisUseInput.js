@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -21,6 +22,8 @@ export default function SwitchListSecondary() {
   const classes = useStyles();
   const [checked, setChecked] = React.useState(['wifi']);
 
+  const { t, i18n } = useTranslation();
+
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
@@ -38,7 +41,7 @@ export default function SwitchListSecondary() {
     
       <List className={classes.root}>
         <ListItem>
-        <p style={{ fontSize: '1.3rem', lineHeight: '1.6rem' }} className="color-grey" > ¿Eres consumidor de Cannabis?</p>
+        <p style={{ fontSize: '1.3rem', lineHeight: '1.6rem' }} className="color-grey" > {t('CannabicProfile.UseSubTitle')}</p>
           <ListItemSecondaryAction > 
             <Switch
               edge="end"

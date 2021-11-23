@@ -1,4 +1,6 @@
 import React, { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
+
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
@@ -28,6 +30,8 @@ const PostDialogStats = ({
 }) => {
   const ref = useRef();
 
+  const { t, i18n } = useTranslation();
+
   const handleClick = async () => {
     if (!currentUser) {
       return showModal(
@@ -50,7 +54,7 @@ const PostDialogStats = ({
     try {
       await votePost(post._id, token);
     } catch (err) {
-      showAlert('Could not vote on the post.', () => handleClick());
+      showAlert(t('PostDialog.Stats.CouldNotVoteOnThePost'), () => handleClick());
     }
   };
 
@@ -118,7 +122,7 @@ const PostDialogStats = ({
       <p className="heading-4">
         {post.postVotes.length === 0 ? (
           <span>
-            Be the first to{' '}
+            {t('PostDialog.Stats.BeTheFirstTo')}{' '}
             <b
               style={{ cursor: 'pointer' }}
               onClick={(event) => {
@@ -127,14 +131,14 @@ const PostDialogStats = ({
               }}
               data-test="component-like-button"
             >
-              like this
+              {t('PostDialog.Stats.LikeThis')}
             </b>
           </span>
         ) : (
           <span>
             <b>
               {post.postVotes.length}{' '}
-              {post.postVotes.length === 1 ? 'like' : 'likes'}
+              {post.postVotes.length === 1 ?  t('PostDialog.Stats.Like') : t("PostDialog.Stats.Likes")}
             </b>
           </span>
         )}

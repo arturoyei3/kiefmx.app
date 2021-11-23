@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 import ChangeAvatarButton from '../../components/ChangeAvatarButton/ChangeAvatarButton';
@@ -18,6 +19,7 @@ const ProfileHeader = ({
 }) => {
   const { avatar, username, bio, website, fullName, city } = data.user;
   const { following, followers, postCount } = data;
+  const { t, i18n } = useTranslation();
 
   const showUsersModal = (followers, following) => {
     token &&
@@ -47,7 +49,7 @@ const ProfileHeader = ({
         return (
           <Fragment>
             <Link to="/settings/edit">
-              <Button inverted>Edit Profile</Button>
+              <Button inverted>{t('Profile.EditProfile')}  </Button>
             </Link>
             <SettingsButton />
           </Fragment>
@@ -72,7 +74,7 @@ const ProfileHeader = ({
                   options: [
                     {
                       warning: true,
-                      text: 'Unfollow',
+                      text:  t('Profile.Unfollow'),
                       onClick: () => follow(),
                     },
                   ],
@@ -88,14 +90,14 @@ const ProfileHeader = ({
             }
             inverted
           >
-            Following
+             {t('Profile.Following')}
           </Button>
         );
       }
     }
     return (
       <Button loading={loading} onClick={() => follow(data.user._id, token)}>
-        Follow
+        {t('Profile.Follow')}
       </Button>
     );
   };

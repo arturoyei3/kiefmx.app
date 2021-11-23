@@ -73,7 +73,7 @@ const Header = memo(({ currentUser }) => {
               </Link>
               <Link to="/signup">
                 <h3 className="heading-3 heading--button color-blue">
-                  Sign Up
+                  Sign Up  
                 </h3>
               </Link>
             </Fragment>

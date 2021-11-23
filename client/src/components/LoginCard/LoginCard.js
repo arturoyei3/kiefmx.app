@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -30,6 +31,8 @@ const LoginCard = ({
 }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { t, i18n } = useTranslation();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     signInStart(email, password);
@@ -57,19 +60,19 @@ const LoginCard = ({
           className="form-card__form"
         >
           <FormInput
-            placeholder="Username or email address"
+            placeholder={t('LoginCard.UsernameOrEmailAddress')}
             type="text"
             onChange={(e) => setEmail(e.target.value)}
             required
           />
           <FormInput
-            placeholder="Password"
+            placeholder={t('LoginCard.Password')}
             type="password"
             onChange={(e) => setPassword(e.target.value)}
             required
           />
           <Button disabled={fetching} loading={fetching}>
-            Log In
+            {t('LoginCard.Login')}
           </Button>
         </form>
         {error && (
@@ -78,7 +81,8 @@ const LoginCard = ({
           </p>
         )}
         <TextButton style={{ marginTop: '1.5rem' }} darkBlue small>
-          Forgot password?
+          {t('LoginCard.ForgotPassword')}
+          
         </TextButton>
       </Card>
       <Card>
@@ -91,11 +95,11 @@ const LoginCard = ({
           }}
         >
           <h4 style={{ marginRight: '5px' }} className="heading-4 font-thin">
-            Don't have an account?
+          {t('LoginCard.DontHaveAnAccount')}
           </h4>
           <Link to="/signup" onClick={() => onClick && onClick()}>
             <TextButton medium blue bold>
-              Sign up
+              {t('LoginCard.SignUp')}
             </TextButton>
           </Link>
         </section>

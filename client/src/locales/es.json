@@ -1,6 +1,64 @@
 {
   "HashtagPosts": {
-    "CouldNotFindAnyPostAssociatedWith": "No pudimos encontrar posteos asociados con el #",    
-    "": ""
+    "CouldNotFindAnyPostAssociatedWith": "No pudimos encontrar publicaciones asociadas con el #"        
+  },  
+  "LoginCard":{
+    "DontHaveAnAccount":"¿Aún sin cuenta?",
+    "ForgotPassword":"¿Olvidaste tu contraseña?",
+    "Login":"Ingresar",
+    "UsernameOrEmailAddress":"Usuario o correo electrónico",
+    "Password":"Contraseña",
+    "SignUp":"Regístrate"
+  }, 
+  "SignUpCard":{
+    "HaveAccount":"Tengo cuenta",
+    "City":"Ciudad",
+    "Day":"Día",
+    "Month":"Mes",
+    "Year":"Año",
+    "DOB":"Fecha de nacimiento",
+    "Email":"Correo electrónico",
+    "FullName":"Nombre",
+    "Website":"Website",
+    "Bio":"Sobre mi",    
+    "Password":"Contraseña",
+    "SignUp":"Unirme",
+    "SignIn":"Entrar",
+    "Title":"Regístrate en kief.mx y se parte de este gran universo cannábico.",
+    "Username":"Usuario"
+  },
+  "CannabicProfile":{
+    "Title":"Perfil Cannábico",
+    "SubTitle":"Selecciona la opción que más te identifica:",
+    "Use":"Uso de Cannabis",
+    "UseSubTitle":"¿Eres consumidor de Cannabis?"  
+  },
+  "Profile":{
+    "ChangePassword":"Change Password",
+    "ChangeProfilePhoto":"Cambiar foto",
+    "EditProfile":"Editar",
+    "Following":"Siguiendo",
+    "Follow":"Seguir",
+    "Unfollow":"Dejar de seguir",
+    "UploadPhoto":"Upload Photo",
+    "RemoveCurrentPhoto":"Remove Current Photo",
+    "ProfilePictureUpdated":"Foto actualizada",
+    "Submit":"Guardar"
+  },
+  "PostDialog":{
+    "CommentForm":{
+      "AddAComment":"Agrega un comentario...",
+      "Login":"Ingresa",
+      "LoginToLikeOrComment":"para interactuar en kief.mx...",
+      "Post":"Enviar",
+      "YouCannotPostAnEmptyComment":"No puedes publicar un comentario vacío."
+    },    
+    "Stats":{
+      "BeTheFirstTo":"Se el primero en dar",
+      "CouldNotVoteOnThePost":"No se puedo procesar.",
+      "LikeThis": "Me gusta",
+      "Like":"Me gusta",
+      "Likes":"Me gusta"
+    }    
   }   
 }

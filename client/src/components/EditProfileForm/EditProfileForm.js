@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { useFormik } from 'formik';
 import { createStructuredSelector } from 'reselect';
@@ -61,6 +62,7 @@ const EditProfileForm = ({
     return errors;
   };
 
+  const { t, i18n } = useTranslation();
   const [value, setValue] = useState([])
 	const [error, setError] = useState("")
 	
@@ -100,36 +102,44 @@ const EditProfileForm = ({
           <ChangeAvatarButton />
         </div>
       </SettingsFormGroup>
+
       <SettingsFormGroup>
-        <label className="heading-3 font-bold">Name</label>
+      <label className="heading-3 font-bold">{t('CannabicProfile.Use')}</label>
+        <CannabisUseInput />        
+        <label></label>
+        <Divider />
+      </SettingsFormGroup>
+
+      <SettingsFormGroup>
+        <label className="heading-3 font-bold">{t('SignUpCard.FullName')}</label>
         <FormInput
           name="fullName"
           fieldProps={formik.getFieldProps('fullName')}
         />
       </SettingsFormGroup>
       <SettingsFormGroup>
-        <label className="heading-3 font-bold">City</label>
+        <label className="heading-3 font-bold">{t('SignUpCard.City')}</label>
         <FormInput
           name="city"
           fieldProps={formik.getFieldProps('city')}
         />
       </SettingsFormGroup>
       <SettingsFormGroup>
-        <label className="heading-3 font-bold">Website</label>
+        <label className="heading-3 font-bold">{t('SignUpCard.Website')}</label>
         <FormInput
           name="website"
           fieldProps={formik.getFieldProps('website')}
         />
       </SettingsFormGroup>
       <SettingsFormGroup>
-        <label className="heading-3 font-bold">Bio</label>
+        <label className="heading-3 font-bold">{t('SignUpCard.Bio')}</label>
         <FormTextarea name="bio" fieldProps={formik.getFieldProps('bio')} />
       </SettingsFormGroup>
            
       <SettingsFormGroup>
-      <label className="heading-3 font-bold">Perfil Cannábico</label>
+      <label className="heading-3 font-bold">{t('CannabicProfile.Title')}</label>
         <CannabisPreferencesInput
-          	label="Selecciona la opción que más te identifica.."
+          	label={t('CannabicProfile.SubTitle')}
             value={value}
             setValue={setValue}            
             error={error}
@@ -138,13 +148,7 @@ const EditProfileForm = ({
         <label></label>
         <Divider />
       </SettingsFormGroup>
-     
-      <SettingsFormGroup>
-      <label className="heading-3 font-bold">Consumo</label>
-        <CannabisUseInput />        
-        <label></label>
-        <Divider />
-      </SettingsFormGroup>
+          
                   
       <SettingsFormGroup>
         <label></label>
@@ -158,7 +162,7 @@ const EditProfileForm = ({
             }
           }}
         >
-          Submit
+          {t('Profile.Submit')}
         </Button>
       </SettingsFormGroup>
     </SettingsForm>
