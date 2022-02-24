@@ -9,13 +9,9 @@ import {
   FormHelperText,
 } from "@material-ui/core";
 
-const options = [{label: "Auto exploración", value: 1, class: "cannabic-comercial"},
-                  {label: "Cuidado Personal", value: 2, class: "cannabic-comercial"}, 
-                  {label: "Comercial", value: 3, class: "cannabic-comercial"}, 
-                  {label: "Espiritual", value: 4, class: "cannabic-comercial"}, 
-                  {label: "Industrial", value: 5, class: "cannabic-comercial"}, 
-                  {label: "Investigación", value: 6, class: "cannabic-comercial"}, 
-                  {label: "Medicinal", value: 7, class:"cannabic-comercial"}]
+import { getPostTypeOptionList } from '../../utils/postTypeOptionList';
+
+const postTypes = getPostTypeOptionList();
 
 
 const useStyles = makeStyles((theme) => ({
@@ -76,8 +72,8 @@ const CannabisPreferencesInput = ({
           </FormHelperText>
         )}
         <div className={classes.chipsDiv}>
-          {options && options.length
-            ? options.map((option, i) => (
+          {postTypes && postTypes.length
+            ? postTypes.map((option, i) => (
                 <Chip
                   icon={option.icon}
                   className={classes.chip}

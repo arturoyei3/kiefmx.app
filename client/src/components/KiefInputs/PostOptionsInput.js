@@ -83,7 +83,7 @@ const PostOptionsInputs = ({
                   <Typography variant="body2">{`${option.label}`}</Typography>
                 }
                 clickable
-                onClick={() => handleClick(option.value, option.label)}
+                onClick={() => handleClick(option.value, option.code)}
               />
             ))
           : null}

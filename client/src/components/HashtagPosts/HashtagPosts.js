@@ -11,6 +11,11 @@ import PreviewImage from '../../components/PreviewImage/PreviewImage';
 import SkeletonLoader from '../../components/SkeletonLoader/SkeletonLoader';
 import ImageGrid from '../../components/ImageGrid/ImageGrid';
 
+import { getPostTypeOptionList } from '../../utils/postTypeOptionList';
+import TypePost from '../KiefInputs/TypePostInput';
+
+const postTypes = getPostTypeOptionList();
+
 const HashtagPosts = ({ token, showModal, showAlert }) => {
   const [posts, setPosts] = useState({
     posts: [],
@@ -24,6 +29,7 @@ const HashtagPosts = ({ token, showModal, showAlert }) => {
   const { t, i18n } = useTranslation();
 
   const handleClick = (postId, avatar) => {
+    
     if (window.outerWidth <= 600) {
       history.push(`/post/${postId}`);
     } else {
@@ -39,6 +45,7 @@ const HashtagPosts = ({ token, showModal, showAlert }) => {
 
   const retrievePosts = async (offset) => {
     try {
+      
       setPosts((previous) => ({ ...previous, fetching: true }));
       const response = await getHashtagPosts(token, hashtag, offset);
       response.posts
@@ -66,6 +73,17 @@ const HashtagPosts = ({ token, showModal, showAlert }) => {
     return skeleton;
   };
 
+  const getCorrectTitle = (hashtag) => {  
+
+    var found = postTypes.find(p=>p.code. toLowerCase() == hashtag.toLowerCase());
+    if(found){
+      return <TypePost value={found.value}></TypePost>;
+    }
+    else{
+      return "#" + hashtag;
+    }
+  };
+
   useScrollPositionThrottled(
     ({ atBottom }) => {
       if (atBottom && posts.hasMore && !posts.fetching) {
@@ -85,18 +103,18 @@ const HashtagPosts = ({ token, showModal, showAlert }) => {
   return !posts.fetching && posts.posts.length === 0 ? (
     <div className="hashtag-posts__empty">
       <h2 className="heading-2">        
-        {t('HashtagPosts.CouldNotFindAnyPostAssociatedWith')}{hashtag}.
+        {t('HashtagPosts.CouldNotFindAnyPostAssociatedWith')}{getCorrectTitle(hashtag)}.
       </h2>
     </div>
   ) : (
     <Fragment>
       <MobileHeader backArrow>
         <TextButton style={{ justifySelf: 'center' }} bold large>
-          #{hashtag}
+          {getCorrectTitle(hashtag)}
         </TextButton>
       </MobileHeader>
       <div className="hashtag-posts__title">
-        <h2 className="heading-2">#{hashtag}</h2>
+        <h2 className="heading-2">{getCorrectTitle(hashtag)}</h2>
         <h3 className="heading-3 font-medium">
           <span className="font-bold">{posts.postCount}</span>{' '}
           {posts.postCount === 1 ? 'post' : 'posts'}
