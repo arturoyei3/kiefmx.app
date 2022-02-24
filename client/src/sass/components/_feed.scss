@@ -23,9 +23,12 @@
 
   @include respond(phone) {
     grid-column: full-start / full-end;
+    background-color: $color-green-bg;
     & > :not(:last-child) {
-      margin-bottom: 0;
-      margin-top: 0;
+      margin-bottom: 3rem;
+      margin-top: 3rem;
+      margin-left: 1rem;
+      margin-right: 1rem;
     }
   }
 }
