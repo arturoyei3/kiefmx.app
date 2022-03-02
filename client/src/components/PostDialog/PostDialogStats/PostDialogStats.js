@@ -119,6 +119,8 @@ const PostDialogStats = ({
           }
         />
       </div>
+      
+      {/* Be the first */}    
       <p className="heading-4">
         {post.postVotes.length === 0 ? (
           <span>

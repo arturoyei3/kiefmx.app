@@ -133,67 +133,27 @@ const PostDialog = ({
           {fetching ? (
             <SkeletonLoader animated />
           ) : (
+            
+            
             <img
               src={state.data.image}
               alt="Post"
               style={{ filter: state.data.filter }}
             />
           )}
-        </div>
-        <header
-          className={classNames({
-            'post-dialog__header': true,
-            'post-dialog__header--simple': simple,
-          })}
-        >
-          {fetching ? (
-            <SkeletonLoader
-              style={{ height: '4rem', width: '4rem', borderRadius: '100px' }}
-            />
-          ) : (
-            <Link
-              to={`/${state.data.author.username}`}
-              style={{ display: 'flex' }}
-            >
-              <Avatar
-                className="avatar--small"
-                imageSrc={state.data.author.avatar}
-              />
-            </Link>
-          )}
-          {fetching ? (
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <SkeletonLoader style={{ height: '1rem', width: '10rem' }} />
-              <SkeletonLoader
-                style={{ height: '1rem', width: '15rem', marginTop: '5px' }}
-              />
-            </div>
-          ) : (
-            <div>
-              <Link
-                style={{ textDecoration: 'none' }}
-                to={`/${state.data.author.username}`}
-              >
-                <p className="heading-4 heading-4--bold">
-                  <b>{state.data.author.username}</b>
-                </p>
-              </Link>
+          {state.data.postType && (
+            <Link style={{ textDecoration: 'none' }}
+            to={`/explore/tags/${postTypes[state.data.postType - 1].code.toLowerCase()}`}
+          >
+            <span className="post-type">
+              <TypePost value={state.data.postType} hideLabel={true} ></TypePost>                    
+            </span>
+          </Link>
 
-                {state.data.postType && (
-                  <Link style={{ textDecoration: 'none' }}
-                  to={`/explore/tags/${postTypes[state.data.postType - 1].code.toLowerCase()}`}
-                >
-                  <span className="post-type">
-                    <TypePost value={state.data.postType}></TypePost>                    
-                  </span>
-                </Link>
-
-                  
-                )}
-             </div>
             
           )}
-          {!fetching && (
+          
+           {!fetching && (
             <div
               onClick={() => {
                 const options = [
@@ -243,6 +203,70 @@ const PostDialog = ({
               <Icon className="icon--small" icon="ellipsis-horizontal" />
             </div>
           )}
+        </div>
+        <header
+          className={classNames({
+            'post-dialog__header': true,
+            'post-dialog__header--simple': simple,
+          })}
+        >
+          {fetching ? (
+            <SkeletonLoader
+              style={{ height: '4rem', width: '4rem', borderRadius: '100px' }}
+            />
+          ) : (
+            <Link
+              to={`/${state.data.author.username}`}
+              style={{ display: 'flex' }}
+            >
+              <Avatar
+                className="avatar--small"
+                imageSrc={state.data.author.avatar}
+              />
+            </Link>
+          )}
+          {fetching ? (
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              <SkeletonLoader style={{ height: '1rem', width: '10rem' }} />
+              <SkeletonLoader
+                style={{ height: '1rem', width: '15rem', marginTop: '5px' }}
+              />
+            </div>
+          ) : (
+            <div>
+              <Link
+                style={{ textDecoration: 'none' }}
+                to={`/${state.data.author.username}`}
+              >
+                <p className="heading-4 heading-4--bold">
+                  <b>{state.data.author.username}</b>
+                </p>
+              </Link>
+
+                {state.data.postType && (
+                  <Link style={{ textDecoration: 'none' }}
+                  to={`/explore/tags/${postTypes[state.data.postType - 1].code.toLowerCase()}`}
+                >
+                  <span className="post-type">
+                    <TypePost value={state.data.postType} hideLabel={false}></TypePost>                    
+                  </span>
+                </Link>
+
+                  
+                )}
+             </div>
+            
+          )}
+         
+
+
+
+
+
+
+
+
+
         </header>
         <div
           data-test="component-post-dialog-content"

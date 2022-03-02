@@ -77,7 +77,7 @@ const HashtagPosts = ({ token, showModal, showAlert }) => {
 
     var found = postTypes.find(p=>p.code. toLowerCase() == hashtag.toLowerCase());
     if(found){
-      return <TypePost value={found.value}></TypePost>;
+      return <TypePost value={found.value} hideLabel={false}></TypePost>;
     }
     else{
       return "#" + hashtag;

@@ -33,24 +33,26 @@ const useStyles = makeStyles((theme) => ({
   formHelperText: {
     textAlign: "center",
   },
+
 }));
 
 // 1.0.5
 
 const TypePostInput = ({
-  value,     
+  value,  
+  hideLabel = false,       
 }) => {
   
   const classes = useStyles();
 
   return (
     <>
-    {value == "1" && ( <><LudicoIcon /> <span>Lúdico / Recreativo</span></> )}
-    {value == "2" && ( <><ActualidadIcon /> <span>Actualidad Cannábica</span></> )}
-    {value == "3" && ( <><AutocultivoIcon /> <span>Autocultivo</span></> )}
-    {value == "4" && ( <><MedicalIcon /> <span>Medicinal / Investigación</span></> )}
-    {value == "5" && ( <><EmprendimientoIcon /> <span>Emprendimiento</span></> )}
-    {value == "6" && ( <><LifeStyleIcon /> <span>Estilo de Vida</span></> )}    
+    {value === "1" && ( <><LudicoIcon /> { hideLabel === false  && ( <span>{postTypes[0].label}</span> )} </> )}
+    {value === "2" && ( <><ActualidadIcon /> { hideLabel === false  && ( <span>{postTypes[1].label}</span> )} </> )}
+    {value === "3" && ( <><AutocultivoIcon /> { hideLabel === false  && ( <span>{postTypes[2].label}</span> )} </> )}
+    {value === "4" && ( <><MedicalIcon /> { hideLabel === false  && ( <span>{postTypes[3].label}</span> )} </> )}
+    {value === "5" && ( <><EmprendimientoIcon /> { hideLabel === false  && ( <span>{postTypes[4].label}</span> )} </> )}
+    {value === "6" && ( <><LifeStyleIcon /> { hideLabel === false  && ( <span>{postTypes[5].label}</span> )} </> )}
     </>
   );
 };

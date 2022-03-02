@@ -54,11 +54,7 @@ body {
 
 .post-type{
   font-size: 1.1rem;
-  color: $color-black;
-
-  & > span {
-    margin-left: -10px !important ;
-  } 
+  color: $color-black;  
 
   svg {
     font-size: 17px;
