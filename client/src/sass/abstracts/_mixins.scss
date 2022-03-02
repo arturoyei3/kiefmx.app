@@ -20,14 +20,14 @@
     overflow: hidden;
   }
   @if $component == image {
-    grid-row: 2 / span 1;
+    grid-row: 1 / span 1;
   }
   @if $component == content {
     grid-row: 3 / -1;
     grid-template-rows: repeat(3, min-content);
   }
   @if $component == header {
-    grid-row: 1 / span 1;
+    grid-row: 2 / span 1;
   }
   @if $component == stats {
     border-bottom: none;
