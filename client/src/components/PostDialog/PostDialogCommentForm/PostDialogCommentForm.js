@@ -119,6 +119,7 @@ const PostDialogCommentForm = ({
             {state.posting && <Loader />}
             <input
               className="add-comment__input"
+              id= {'comment_' + postId}
               type="text"
               placeholder={t("PostDialog.CommentForm.AddAComment")}
               onChange={(event) => {

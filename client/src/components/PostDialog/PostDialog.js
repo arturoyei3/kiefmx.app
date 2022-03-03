@@ -18,7 +18,8 @@ import Icon from '../Icon/Icon';
 import SkeletonLoader from '../SkeletonLoader/SkeletonLoader';
 import Comment from '../Comment/Comment';
 import PostDialogCommentForm from './PostDialogCommentForm/PostDialogCommentForm';
-import PostDialogStats from './PostDialogStats/PostDialogStats';
+import PostDialogLike from './PostDialogStats/PostDialogLike';
+import PostDialogComment from './PostDialogStats/PostDialogComment';
 
 import { INITIAL_STATE, postDialogReducer } from './postDialogReducer';
 
@@ -218,6 +219,7 @@ const PostDialog = ({
             <Link
               to={`/${state.data.author.username}`}
               style={{ display: 'flex' }}
+              className="avatar--post"
             >
               <Avatar
                 className="avatar--small"
@@ -257,15 +259,27 @@ const PostDialog = ({
              </div>
             
           )}
-         
 
+          {!fetching && (
+            <>
+              <PostDialogLike
+              currentUser={currentUser}
+              token={token}
+              post={state.data}
+              dispatch={dispatch}
+              profileDispatch={profileDispatch}              
+            />
 
-
-
-
-
-
-
+              <PostDialogComment
+                currentUser={currentUser}
+                token={token}
+                post={state.data}
+                dispatch={dispatch}
+                profileDispatch={profileDispatch}              
+              />
+            </>
+            
+          )}
 
         </header>
         <div
@@ -326,32 +340,7 @@ const PostDialog = ({
                 </div>
               )}
           </div>
-          {fetching ? (
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                padding: '2rem 2rem 6rem 2rem',
-              }}
-            >
-              <SkeletonLoader style={{ height: '1.5rem', width: '15rem' }} />
-              <SkeletonLoader
-                style={{ height: '1.5rem', width: '20rem', marginTop: '1rem' }}
-              />
-              <SkeletonLoader
-                style={{ height: '1.5rem', width: '10rem', marginTop: '1rem' }}
-              />
-            </div>
-          ) : (
-            <PostDialogStats
-              currentUser={currentUser}
-              token={token}
-              post={state.data}
-              dispatch={dispatch}
-              profileDispatch={profileDispatch}
-              simple={simple}
-            />
-          )}
+          
           {!fetching && (
             <PostDialogCommentForm
               postId={postId}

@@ -15,8 +15,8 @@
     grid-row: 1 / -1;
     grid-column: 1 / span 1;
     background-color: #FFFFFF;
-    min-height: 35rem;
-    max-height: 65rem;
+    min-height: 28rem;
+    max-height: 74rem;
     display: flex;
     flex-direction: row-reverse;
     img {
@@ -59,15 +59,24 @@
   }
 
   &__header {
-    display: flex;
-    flex-direction: column;
+    display: flex;    
     align-items: center;
     padding: 1rem;
     background-color: $color-white;
-    text-align: center;    
+
+    .avatar--post{
+      margin-right: 0.5rem;
+    }
 
     &--simple {
       @include simplePostDialog(header);
+    } 
+    
+    .icon{
+      width: 2rem;
+      height: 2rem;
+      margin-left: 0.4rem;
+
     }
   }
 
@@ -148,3 +157,11 @@
     }
   }
 }
+
+.center{
+  text-align: center;
+}
+
+.to-right {
+  margin-left: auto;
+} 
