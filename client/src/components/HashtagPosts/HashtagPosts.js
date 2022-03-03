@@ -67,7 +67,7 @@ const HashtagPosts = ({ token, showModal, showAlert }) => {
     const skeleton = [];
     for (let i = 0; i < amount; i++) {
       skeleton.push(
-        <SkeletonLoader key={i} style={{ minHeight: '30rem' }} animated />
+        <SkeletonLoader key={i}  animated />
       );
     }
     return skeleton;
