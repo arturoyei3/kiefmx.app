@@ -56,12 +56,15 @@ const PostDialog = ({
       // Check if the post data is already provided by another component
       if (postData) {
         dispatch({ type: 'FETCH_POST_SUCCESS', payload: postData });
-      } else {
-        window.history.pushState(
-          { prevUrl: window.location.href },
-          null,
-          `/post/${postId}`
-        );
+      } else { 
+
+        // TODO: Try not to push history 
+        // window.history.pushState(
+        //   { prevUrl: window.location.href },
+        //   null,
+        //   `/post/${postId}`
+        // );
+        
         (async function () {
           try {
             const response = await getPost(postId);
