@@ -286,6 +286,7 @@ module.exports.retrievePostFeed = async (req, res, next) => {
       'author.website',
       'author.bio',
       'author.githubId',
+      'author.admin'
     ];
 
     const posts = await Post.aggregate([

@@ -31,7 +31,7 @@ import ChangeAvatarButton from '../ChangeAvatarButton/ChangeAvatarButton';
 
 import CannabisUseInput from '../KiefInputs/CannabisUseInput';
 import CannabisPreferencesInput from '../KiefInputs/CannabisPreferencesInput';
-
+import { VerifiedIcon} from '../../components/Icons/Icons';
 import Divider from '@material-ui/core/Divider';
 
 
@@ -70,7 +70,7 @@ const EditProfileForm = ({
     initialValues: {
       email: currentUser.email,
       fullName: currentUser.fullName,
-      username: currentUser.username,
+      username: currentUser.username,      
       bio: currentUser.bio || '',
       website: currentUser.website || '',
       city: currentUser.city || '',
@@ -98,7 +98,7 @@ const EditProfileForm = ({
           />
         </ChangeAvatarButton>
         <div style={{ lineHeight: '2.2rem' }}>
-          <h3 className="heading-2 font-medium">{formik.values.username}</h3>
+          <h3 className="heading-2 font-medium">{formik.values.username}{currentUser.verified ? (<VerifiedIcon/>) : (null)}</h3>
           <ChangeAvatarButton />
         </div>
       </SettingsFormGroup>

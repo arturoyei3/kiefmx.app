@@ -33,6 +33,7 @@ const SuggestedUsers = ({ token, showAlert, card, style, max }) => {
         users.map((user, idx) => (
           <UserCard
             avatar={user.avatar}
+            verified={user.verified}
             username={user.username}
             subText={user.fullName}
             style={card ? { padding: '1.5rem' } : { padding: '1rem 0' }}

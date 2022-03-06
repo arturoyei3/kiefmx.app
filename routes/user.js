@@ -15,6 +15,7 @@ const {
   removeAvatar,
   updateProfile,
   retrieveSuggestedUsers,
+  verifyUser
 } = require('../controllers/userController');
 const { requireAuth, optionalAuth } = require('../controllers/authController');
 
@@ -36,7 +37,9 @@ userRouter.put(
   changeAvatar
 );
 userRouter.put('/', requireAuth, updateProfile);
-
+//internal use only
+userRouter.get('/internal/verify/:username', requireAuth, verifyUser);
+// end internal use
 userRouter.delete('/avatar', requireAuth, removeAvatar);
 
 userRouter.post('/:postId/bookmark', requireAuth, bookmarkPost);

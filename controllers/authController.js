@@ -24,6 +24,15 @@ module.exports.verifyJwt = (token) => {
         { _id: id },
         'email username avatar bookmarks bio fullName confirmed website city age dayOBD monthOBD yearOBD' 
       );
+
+      if(user.username === 'kiefmx' || user.username === 'mayels'){
+        user.admin = true;
+      } 
+
+      if(user.banned){
+        reject('Not authorized.');
+      }
+
       if (user) {
         return resolve(user);
       } else {

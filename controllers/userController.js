@@ -9,6 +9,7 @@ const ObjectId = require('mongoose').Types.ObjectId;
 const cloudinary = require('cloudinary').v2;
 const fs = require('fs');
 const crypto = require('crypto');
+const {sendVerificationBadgeEmail} = require('../utils/controllerUtils');
 
 const {
   validateEmail,
@@ -25,7 +26,7 @@ module.exports.retrieveUser = async (req, res, next) => {
   try {
     const user = await User.findOne(
       { username },
-      'username fullName avatar bio bookmarks fullName _id website'
+      'username fullName avatar bio bookmarks fullName _id website verified'
     );
     if (!user) {
       return res
@@ -455,6 +456,7 @@ module.exports.searchUsers = async (req, res, next) => {
           username: true,
           avatar: true,
           fullName: true,
+          verified: true,
         },
       },
     ]);
@@ -635,6 +637,55 @@ module.exports.updateProfile = async (req, res, next) => {
   }
 };
 
+module.exports.verifyUser = async (req, res, next) => {
+  const { username } = req.params;
+  const requestingUser = res.locals.user;
+
+  try {
+    const user = await User.findOne(
+      { username: username },
+    );
+    if(!requestingUser.admin) return res.status(401).send({ error: 'Not Authorized' })
+    if (!user) {
+      return res
+        .status(404)
+        .send({ error: 'Could not find a user with that username.' });
+    }
+
+    
+
+    const userVerifyUpdate = await User.updateOne({
+       username: username 
+      },
+      {
+         $set: { verified : true } 
+    });
+
+    console.log(userVerifyUpdate)
+    if (!userVerifyUpdate.acknowledged) {
+      if (!userVerifyUpdate.ok) {
+        return res.status(500).send({ error: 'Could not give User Verification badge.' });
+      }
+      // The above query did not modify anything meaning that the user has already bookmarked the post
+      // Remove the bookmark instead
+      const userRemoveVerifyUpdate = await User.updateOne({
+       username: username 
+      },
+      {
+         $set: { verified : undefined } 
+    });
+      if (!userRemoveVerifyUpdate.acknowledge) {
+        return res.status(500).send({ error: 'Could not remove User Verification badge.' });
+      }
+      return res.send({ success: true, operation: 'un-verify' });
+    }
+    await sendVerificationBadgeEmail(username,user.email)
+    return res.send({ success: true, operation: 'verify' });
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports.retrieveSuggestedUsers = async (req, res, next) => {
   const { max } = req.params;
   const user = res.locals.user;
@@ -683,11 +734,12 @@ module.exports.retrieveSuggestedUsers = async (req, res, next) => {
           email: true,
           avatar: true,
           isFollowing: { $in: [user._id, '$followers.followers.user'] },
+          verified: true,
           posts: true,
         },
       },
       {
-        $match: { isFollowing: false },
+        $match: { isFollowing: false, verified: true},
       },
       {
         $sample: { size: max ? Number(max) : 20 },

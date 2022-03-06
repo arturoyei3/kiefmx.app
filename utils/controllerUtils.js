@@ -156,6 +156,34 @@ module.exports.sendConfirmationEmail = async (
 };
 
 /**
+ * Sends a verification badge congoratulating email to an email address
+ * @function sendVerificationBadgeEmail
+ * @param {string} username The username of the user to send the email to
+ * @param {string} email The email of the user to send the email to
+ * 
+ */
+ module.exports.sendVerificationBadgeEmail = async (
+  username,
+  email,
+) => {
+
+    try {
+      const source = fs.readFileSync(
+        'templates/verificationEmail.html',
+        'utf8'
+      );
+      let template = handlebars.compile(source);
+      const html = template({
+        username: username,
+        url: "https://app.kief.mx",
+      });
+      await this.sendEMail(email, '¡Felicidades! Tu cuenta en kief.mx está verificada.', html, 'Verification', 'verification');
+    } catch (err) {
+      console.log(err);
+  }
+};
+
+/**
  * Formats a cloudinary thumbnail url with a specified size
  * @function formatCloudinaryUrl
  * @param {string} url The url to format

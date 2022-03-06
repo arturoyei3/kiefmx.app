@@ -8,6 +8,7 @@ import UsersList from '../../components/UsersList/UsersList';
 import UnfollowPrompt from '../../components/UnfollowPrompt/UnfollowPrompt';
 import Button from '../../components/Button/Button';
 import SettingsButton from '../../components/SettingsButton/SettingsButton';
+import { VerifiedIcon} from '../../components/Icons/Icons';
 
 const ProfileHeader = ({
   currentUser,
@@ -117,7 +118,7 @@ const ProfileHeader = ({
 
       <div className="profile-header__info">
         <div className="profile-buttons">
-          <h1 className="heading-1 font-thin">{username}</h1>
+          <h1 className="heading-1 font-thin">{username}{data.user.verified ? (<VerifiedIcon/>) : (null)}</h1>
           {renderButton()}
         </div>
 
